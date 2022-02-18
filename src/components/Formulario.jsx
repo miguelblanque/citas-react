@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import Error from './Error'
 
-function Formulario( {pacientes,setPacientes}) {
+function Formulario( {pacientes,setPacientes,paciente,setPaciente}) {
 
     const [nombre,setNombre]= useState('');
     const [propietario,setPropietario]= useState('');
@@ -11,7 +11,18 @@ function Formulario( {pacientes,setPacientes}) {
     
     const [error,setError]=useState(false);
 
-    // Codigo para generar un id unico
+    useEffect(()=>{
+   if(Object.keys(paciente).length > 0){
+       setNombre(paciente.nombre)
+       setPropietario(paciente.propietario)
+       setEmail(paciente.email)
+       setFecha(paciente.fecha)
+       setSintomas(paciente.sintomas)
+   }
+    },[paciente])
+
+     
+    // Codigo para gener ar un id unico
     const generarId= () =>{
         const random=Math.random().toString(36).substr(2);
         const fecha=Date.now().toString(36)
@@ -38,11 +49,22 @@ function Formulario( {pacientes,setPacientes}) {
             email,
             fecha,
             sintomas,
-            id: generarId()
+           
         }
 
-         //Creamos una copia de paciente
-         setPacientes([...pacientes,objetoPaciente])
+        if(paciente.id){
+           //Editando el Registro
+           objetoPaciente.id= paciente.id
+           const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id=== 
+            paciente.id ? objetoPaciente : pacienteState)
+            setPacientes(pacientesActualizados)
+            setPaciente({})
+        }else{
+            //Nuevo Registro
+            objetoPaciente.id= generarId()
+           setPacientes([...pacientes,objetoPaciente]);
+        }
+    
 
          //Reiniciamos el formulario
 
@@ -54,7 +76,7 @@ function Formulario( {pacientes,setPacientes}) {
    }
    
  
-     console.log(nombre)
+     
   return (
     <div className="md:w-1/2 lg:w-2/5 mx-5">
         <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
@@ -133,10 +155,10 @@ function Formulario( {pacientes,setPacientes}) {
             <input type="submit"
             className="bg-indigo-600 w-full text-white uppercase font-bold
             hover:bg-indigo-700 cursor-pointer transition-all"
-            value="Agregar Paciente"
+            value={ paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
             />
         </form>
-
+ 
     </div>
   )
 }
