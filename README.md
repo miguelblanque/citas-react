@@ -21,3 +21,8 @@ Reglas JSX
  - Todos los componentes debe tener un return
  - El return debe tener un solo elemento en el nivel mas alto ( se deben encapsular en un fragment <></> ó con <>)
  - Las extensiones pueden ser .js y .jsx
+
+ 
+ Desplegado con netflily
+
+ https://cranky-minsky-f68588.netlify.app
