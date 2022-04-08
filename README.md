@@ -3,7 +3,7 @@
 
 Creacion proyecto:
 
-npm init vite@latest
+npm init vite@latest 
 
 Project name: citas-react
 Framework: react
@@ -13,16 +13,15 @@ cd citas-react
 npm install
 npm run dev
 
+Pagina principal de la aplicacion
 
-JSX - es una extenion desarrollada por facebook para React 
+![alt text](/src/img/Principal.png)
 
-Reglas JSX
- - las etiquetas tienen que cerrar />
- - Todos los componentes debe tener un return
- - El return debe tener un solo elemento en el nivel mas alto ( se deben encapsular en un fragment <></> ó con <>)
- - Las extensiones pueden ser .js y .jsx
+Pantalla de administracion donde se listan los pacientes y se pueden editar y eliminar.
 
+![alt text](/src/img/Control%20citas.png)
  
+
  Desplegado con netflily
 
  https://cranky-minsky-f68588.netlify.app
